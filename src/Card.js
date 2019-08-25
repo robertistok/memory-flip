@@ -41,21 +41,31 @@ Card.propTypes = {
 };
 
 const Root = styled.div`
-  max-width: 100px;
-  max-height: 100px;
+  position: relative;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  opacity: ${({ matched }) => (matched ? 0.5 : "initial")};
+  opacity: ${({ matched }) => (matched ? 0.3 : "initial")};
+  margin: 10px;
+
+  @media screen and (max-width: 672px) {
+    width: 75px;
+    height: 75px;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const BaseCard = styled(AnimatedDiv)`
   position: absolute;
   width: 100%;
   height: 100%;
-  max-width: 100px;
-  max-height: 100px;
   will-change: transform, opacity;
   color: #ffffff;
   font-size: 20px;
@@ -65,7 +75,7 @@ const BaseCard = styled(AnimatedDiv)`
 `;
 
 const FrontCard = styled(BaseCard)`
-  background-color: orange;
+  background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
 const BackCard = styled(BaseCard)`

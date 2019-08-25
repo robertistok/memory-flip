@@ -6,8 +6,8 @@ import Card from "./Card";
 import useCardsState from "./state/cards";
 import useFlipLogic from "./hooks/flipLogic";
 
-const ROWS_COUNT = 3;
-const COLUMNS_COUNT = 4;
+const ROWS_COUNT = 4;
+const COLUMNS_COUNT = 5;
 
 const CardBoard = () => {
   const [cards, actions] = useCardsState({
@@ -17,7 +17,7 @@ const CardBoard = () => {
   const [{ blockFlipping }] = useFlipLogic({ cards, actions });
 
   return (
-    <Root rows={ROWS_COUNT} columns={COLUMNS_COUNT}>
+    <Root>
       {cards.map(c => (
         <Card
           disabled={blockFlipping}
@@ -31,15 +31,14 @@ const CardBoard = () => {
 };
 
 const Root = styled.div`
-  margin: auto;
-  display: grid;
+  margin: 0 auto;
+  display: flex;
+  flex-directon: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-items: center;
-  height: 100%;
-  max-height: 400px;
-  max-width: 500px;
-  grid-template: ${({ columns, rows }) =>
-    `repeat(${rows}, ${100 / rows}%) / repeat(${columns}, ${100 / columns}%)`};
+  justify-content: center;
+  max-width: 600px;
 `;
 
 export default CardBoard;
