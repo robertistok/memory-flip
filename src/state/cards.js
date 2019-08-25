@@ -29,6 +29,8 @@ const useCardsState = ({ rowsCount, columnsCount }) => {
         return state.map(c =>
           action.payload.ids.includes(c.id) ? { ...c, matched: true } : c
         );
+      case "RESET_STATE":
+        return getInitialState({ rowsCount, columnsCount });
       default:
         return state;
     }
@@ -44,7 +46,9 @@ const useCardsState = ({ rowsCount, columnsCount }) => {
     dispatch({ type: "MATCH_CARDS", payload });
   };
 
-  return [state, { flipCard, matchCards }];
+  const resetState = () => dispatch({ type: "RESET_STATE" });
+
+  return [state, { flipCard, matchCards, resetState }];
 };
 
 export default useCardsState;

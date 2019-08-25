@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
 
-const useFlipLogic = ({ cards, actions: { flipCard, matchCards } }) => {
+const useFlipLogic = ({
+  cards,
+  actions: { flipCard, matchCards, resetState }
+}) => {
   const [blockFlipping, setBlockFlipping] = useState(false);
 
   useEffect(() => {
     let timer;
 
-    const flippedUnMatchedCards = cards.filter(c => c.flipped && !c.matched);
+    const unMatchedCards = cards.filter(c => !c.matched);
+    const flippedUnMatchedCards = unMatchedCards.filter(
+      c => c.flipped && !c.matched
+    );
     if (flippedUnMatchedCards.length === 2) {
       setBlockFlipping(true);
 
@@ -25,8 +31,13 @@ const useFlipLogic = ({ cards, actions: { flipCard, matchCards } }) => {
       setBlockFlipping(false);
     }
 
+    if (unMatchedCards.length === 0) {
+      alert("You won!");
+      resetState();
+    }
+
     return () => clearTimeout(timer);
-  }, [cards, flipCard, matchCards]);
+  }, [cards, flipCard, matchCards, resetState]);
 
   return [{ blockFlipping }];
 };
