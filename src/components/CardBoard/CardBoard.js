@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import Card from "./Card";
 
-import useCardsState from "./state/cards";
-import useFlipLogic from "./hooks/flipLogic";
+import useCardsState from "../../state/cards";
+import useFlipLogic from "../../hooks/flipLogic";
 
 const ROWS_COUNT = 4;
 const COLUMNS_COUNT = 5;

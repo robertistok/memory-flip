@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
-import CardBoard from "./CardBoard";
+import CardBoard from "./components/CardBoard";
 import { theme } from "./utils/styles";
 
 const App = () => {

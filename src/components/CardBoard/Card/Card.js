@@ -7,7 +7,7 @@ const AnimatedDiv = animated.div;
 
 const Card = ({ disabled, id, number, flipped, flipCard, matched }) => {
   const { transform, opacity } = useSpring({
-    opacity: matched || flipped ? 1 : 0,
+    opacity: flipped || matched ? 1 : 0,
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 }
   });
@@ -15,13 +15,15 @@ const Card = ({ disabled, id, number, flipped, flipCard, matched }) => {
   const handleClick = () => (!matched && !disabled ? flipCard({ id }) : null);
 
   return (
-    <Root disabled={disabled} matched={matched} onClick={handleClick}>
+    <Root data-test="root" disabled={disabled} onClick={handleClick}>
       <BackCard
+        data-test="back-card"
         style={{ opacity: opacity.interpolate(o => 1 - o), transform }}
       />
       <FrontCard
+        data-test="front-card"
         style={{
-          opacity,
+          opacity: matched ? 0.3 : opacity,
           transform: transform.interpolate(t => `${t} rotateX(180deg)`)
         }}
       >
@@ -34,7 +36,7 @@ const Card = ({ disabled, id, number, flipped, flipCard, matched }) => {
 Card.propTypes = {
   disabled: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
-  number: PropTypes.number,
+  number: PropTypes.number.isRequired,
   flipped: PropTypes.bool.isRequired,
   flipCard: PropTypes.func.isRequired,
   matched: PropTypes.bool.isRequired
@@ -48,7 +50,6 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  opacity: ${({ matched }) => (matched ? 0.3 : "initial")};
   margin: 10px;
 
   @media screen and (max-width: 672px) {
