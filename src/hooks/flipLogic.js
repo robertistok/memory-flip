@@ -10,9 +10,8 @@ const useFlipLogic = ({
     let timer;
 
     const unMatchedCards = cards.filter(c => !c.matched);
-    const flippedUnMatchedCards = unMatchedCards.filter(
-      c => c.flipped && !c.matched
-    );
+    const flippedUnMatchedCards = unMatchedCards.filter(c => c.flipped);
+
     if (flippedUnMatchedCards.length === 2) {
       setBlockFlipping(true);
 
@@ -32,7 +31,7 @@ const useFlipLogic = ({
     }
 
     if (unMatchedCards.length === 0) {
-      alert("You won!");
+      alert("You won! Click OK to restart the game.");
       resetState();
     }
 
