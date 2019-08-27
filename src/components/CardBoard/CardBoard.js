@@ -5,9 +5,7 @@ import Card from "./Card";
 
 import useCardsState from "../../state/cards";
 import useFlipLogic from "../../hooks/flipLogic";
-
-const ROWS_COUNT = 4;
-const COLUMNS_COUNT = 5;
+import { ROWS_COUNT, COLUMNS_COUNT } from "../../utils/constants";
 
 const CardBoard = () => {
   const [cards, actions] = useCardsState({
