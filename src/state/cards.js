@@ -38,14 +38,8 @@ const useCardsState = ({ rowsCount, columnsCount }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const flipCard = payload => {
-    dispatch({ type: "FLIP_CARD", payload });
-  };
-
-  const matchCards = payload => {
-    dispatch({ type: "MATCH_CARDS", payload });
-  };
-
+  const flipCard = payload => dispatch({ type: "FLIP_CARD", payload });
+  const matchCards = payload => dispatch({ type: "MATCH_CARDS", payload });
   const resetState = () => dispatch({ type: "RESET_STATE" });
 
   return [state, { flipCard, matchCards, resetState }];
