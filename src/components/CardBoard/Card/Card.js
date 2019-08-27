@@ -15,7 +15,7 @@ const Card = ({ disabled, id, number, flipped, flipCard, matched }) => {
   const handleClick = () => (!matched && !disabled ? flipCard({ id }) : null);
 
   return (
-    <Root data-test="root" disabled={disabled} onClick={handleClick}>
+    <Root data-test="card-root" disabled={disabled} onClick={handleClick}>
       <BackCard
         data-test="back-card"
         style={{ opacity: opacity.interpolate(o => 1 - o), transform }}
