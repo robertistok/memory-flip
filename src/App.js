@@ -2,6 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import CardBoard from "./components/CardBoard";
+import { CardBoardStateProvider } from "./components/CardBoard/CardBoardState";
 import { theme } from "./utils/styles";
 
 const App = () => {
@@ -12,7 +13,9 @@ const App = () => {
           Welcome to memory-flip. Start by clicking on any of the cards and try
           to find its matching pair.
         </Description>
-        <CardBoard />
+        <CardBoardStateProvider>
+          <CardBoard />
+        </CardBoardStateProvider>
       </Root>
     </ThemeProvider>
   );

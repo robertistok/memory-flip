@@ -3,16 +3,12 @@ import styled from "styled-components";
 
 import Card from "./Card";
 
-import useCardsState from "../../state/cards";
-import useFlipLogic from "../../hooks/flipLogic";
-import { ROWS_COUNT, COLUMNS_COUNT } from "../../utils/constants";
+import useFlipLogic from "./hooks/flipLogic";
+import { useCardBoardStateValue } from "./CardBoardState";
 
 const CardBoard = () => {
-  const [cards, actions] = useCardsState({
-    rowsCount: ROWS_COUNT,
-    columnsCount: COLUMNS_COUNT
-  });
-  const [{ blockFlipping }] = useFlipLogic({ cards, actions });
+  const [cards, actions] = useCardBoardStateValue();
+  const [{ blockFlipping }] = useFlipLogic();
 
   return (
     <Root>
