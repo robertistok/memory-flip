@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useFlipLogic = ({
-  cards,
-  actions: { flipCard, matchCards, resetState }
-}) => {
+import { useCardBoardStateValue } from "../CardBoardState";
+
+const useFlipLogic = () => {
+  const [
+    cards,
+    { matchCards, flipCard, resetState }
+  ] = useCardBoardStateValue();
   const [blockFlipping, setBlockFlipping] = useState(false);
 
   useEffect(() => {
